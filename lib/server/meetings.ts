@@ -30,7 +30,7 @@ function isMeetingRecord(value: unknown): value is MeetingRecord {
 }
 
 async function loadAllMeetings(): Promise<MeetingRecord[]> {
-  if (cachedMeetings) return cachedMeetings;
+  if (process.env.NODE_ENV === 'production' && cachedMeetings) return cachedMeetings;
 
   const meetingsPath = path.join(
     process.cwd(),
@@ -45,7 +45,7 @@ async function loadAllMeetings(): Promise<MeetingRecord[]> {
   }
 
   const meetings = parsed.filter(isMeetingRecord);
-  cachedMeetings = meetings;
+  if (process.env.NODE_ENV === 'production') cachedMeetings = meetings;
   return meetings;
 }
 
