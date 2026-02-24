@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #FFF8F4;
   --foreground: #171717;
 }
 
@@ -12,13 +12,6 @@
   --font-serif: var(--font-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #FFF8F4;
-    --foreground: #FFB000;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
@@ -27,4 +20,59 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-serif); /* Headings use Domine */
+}
+
+.cn-offset-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.12);
+  transform: translate(-14px, 14px);
+  z-index: -1;
+}
+
+.cn-calendar {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+}
+
+.cn-calendar .react-calendar__viewContainer {
+  background: transparent;
+}
+
+.cn-calendar .react-calendar__month-view__weekdays {
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.cn-calendar .react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+.cn-calendar .react-calendar__tile {
+  height: 84px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 10px 10px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.65);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.cn-calendar .react-calendar__month-view__days__day--neighboringMonth {
+  color: rgba(0, 0, 0, 0.28);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.cn-calendar .react-calendar__tile--now {
+  background: rgba(255, 176, 0, 0.18);
+}
+
+.cn-calendar .react-calendar__tile:enabled:hover,
+.cn-calendar .react-calendar__tile:enabled:focus {
+  background: rgba(0, 0, 0, 0.04);
 }

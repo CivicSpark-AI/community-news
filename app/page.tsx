@@ -1,89 +1,113 @@
-'use client'; // <-- MUST be the very first line
+'use client';
+
 import { useState } from 'react';
-import Calendar from 'react-calendar'
-import "react-calendar/dist/Calendar.css"; // import default styles
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-
 export default function Home() {
-  const [value, setValue] = useState<Value>(new Date());
-  return ( 
-    <div className="flex min-h-screen items-center justify-center bg-[#FFF8F4] font-sans dark:bg-[#FFF8F4]">
-     <main className="flex min-h-screen w-full flex-col items-center justify-between py-32 px-16 bg-[#FFF8F4] font-sans dark:bg-[#FFF8F4] sm:items-start">
-       
-        <h1 className="text-5xl font-bold tracking-tight text-black">
-          Community News
-        </h1>
-        <div className="w-full h-px bg-black"></div>
+  const [value, setValue] = useState<Value>(new Date('2025-01-01T12:00:00'));
 
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          // Dropdown for local news sources
-          <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+  return (
+    <div className="min-h-screen bg-[#FFF8F4] text-black">
+      <header className="mx-auto max-w-[1200px] px-10 pt-10">
+        <div className="flex items-start justify-between gap-6">
+          <h1 className="font-serif text-5xl leading-none">Community News</h1>
           <a
-            className="flex h-12 items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
+            className="mt-2 inline-flex h-7 items-center rounded-full bg-[#FFB000] px-5 text-sm font-semibold text-black shadow-[0_1px_0_rgba(0,0,0,0.25)]"
           >
-            Local News
+            RSS
           </a>
         </div>
-          <p>{" "}
-            <a
-              href="https://tulsaflyer.org/"
-              className="font-medium text-black"
-            >
-              Tulsa Flyer 
-            </a>{" "}
-            {" "}
-            <a
-              href="https://theokeagle.org/"
-              className="font-medium text-black"
-            >
-              The Oklahoma Eagle 
-            </a>{" "}
-            <a
-              href="https://tulsaflyer.org/category/la-semana/"
-              className="font-medium text-black"
-            >
-              La Semana 
-            </a>{" "} 
+
+        <div className="mt-4 h-px w-full bg-black/80" />
+
+        <nav className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+          <span className="inline-flex items-center rounded-full bg-[#FFB000] px-4 py-1 font-semibold">
+            Local News:
+          </span>
+          <a href="https://tulsaflyer.org/" className="hover:underline">
+            Tulsa Flyer
+          </a>
+          <a href="https://theokeagle.org/" className="hover:underline">
+            The Oklahoma Eagle
+          </a>
+          <a
+            href="https://tulsaflyer.org/category/la-semana/"
+            className="hover:underline"
+          >
+            La Semana
+          </a>
+        </nav>
+      </header>
+
+      <section className="mt-10 bg-[#FFB000] py-4">
+        <p className="text-center text-sm font-medium tracking-wide">
+          Get updates about your community
+        </p>
+      </section>
+
+      <section className="bg-[#FFF8F4] py-16">
+        <div className="mx-auto flex max-w-[1200px] justify-center px-10">
+          <div className="cn-offset-card relative w-full max-w-[520px] rounded-xl bg-white px-14 py-14">
+            <p className="text-center text-base leading-6 text-black/80">
+              Get notifications
+              <br />
+              for the things you
+              <br />
+              <span className="font-semibold text-black">care about</span>
             </p>
-          // Dropdown for local news sources
-        </div>
-         <div className="w-full h-32 bg-[#FFB000] flex items-center justify-center">
-        <p className="max-w-md text-lg leading-8 text-black text-right">
-          Get updates about your community.
-        </p>
-      </div>
-
-      <div className="bg-white p-8 rounded-lg shadow-[-20px_20px_10px_rgba(0,0,0,0.25)] max-w-md mx-auto">
-        <p className="text-black text-center">Get  notifications for the things you <strong>care about</strong></p>
-      </div>
-
-
-
-  <div className="w-full h-32 bg-[#8E0033]">
-        <p className="max-w-md text-lg leading-8 text-white text-right">
-         Tulsa’s <strong>Comprehensive</strong> Calendar
-        </p>
-      </div>
-
-       <div className="mt-30">
-        <div className="w-[400px] sm:w-[500px] lg:w-[600px]">
-            <Calendar
-              value={value}
-              onChange={(val, _event) => setValue(val)} // match signature
-            />
           </div>
         </div>
+      </section>
 
-        <div className="w-full h-32 bg-[#00DFBA] flex items-center justify-center">
-      </div>
+      <section className="bg-[#8E0033] text-white">
+        <div className="mx-auto flex max-w-[1200px] items-center gap-4 px-10 py-4">
+          <button
+            type="button"
+            aria-label="Open menu"
+            className="grid h-10 w-10 place-items-center"
+          >
+            <span className="sr-only">Open menu</span>
+            <span className="grid gap-[5px]">
+              <span className="block h-[2px] w-5 bg-white" />
+              <span className="block h-[2px] w-5 bg-white" />
+              <span className="block h-[2px] w-5 bg-white" />
+            </span>
+          </button>
 
-      </main>
+          <div className="leading-tight">
+            <div className="text-base font-medium">
+              Tulsa&apos;s <span className="font-semibold">Comprehensive</span>{' '}
+              Calendar
+            </div>
+            <div className="text-xs opacity-90">Jan, 2025</div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#FFF8F4] pb-10">
+        <div className="mx-auto max-w-[980px] px-10 pt-8">
+          <Calendar
+            className="cn-calendar"
+            value={value}
+            onChange={(val) => setValue(val)}
+            activeStartDate={new Date('2025-01-01T12:00:00')}
+            showNavigation={false}
+          />
+        </div>
+      </section>
+
+      <footer className="relative bg-[#FFF8F4] pb-10 pt-16">
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-[140px] bg-[#00DFBA]" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-[140px] bg-[#00DFBA]" />
+        <p className="relative text-center text-[10px] text-black/60">
+          Created by the CivicSpark AI team
+        </p>
+      </footer>
     </div>
   );
 }
